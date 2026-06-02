@@ -1,0 +1,56 @@
+# Vercel Speed Insights Implementation
+
+## Summary
+Successfully installed and configured Vercel Speed Insights for this Vite + React portfolio project.
+
+## Changes Made
+
+### 1. Package Installation
+- **Added**: `@vercel/speed-insights` package (latest version)
+- **File**: `package.json` - Added new dependency
+- **File**: `package-lock.json` - Updated with new package and its dependencies
+
+### 2. Code Integration
+- **Modified**: `src/main.jsx`
+  - Added import for `injectSpeedInsights` from `@vercel/speed-insights`
+  - Called `injectSpeedInsights()` before React app initialization
+  - This follows the official Vercel documentation for Vite/Other frameworks
+
+## Implementation Details
+
+According to the latest Vercel Speed Insights documentation (fetched from https://vercel.com/docs/speed-insights/quickstart), for Vite projects, the recommended approach is to use `injectSpeedInsights()` in the main entry point.
+
+The implementation:
+```javascript
+import { injectSpeedInsights } from '@vercel/speed-insights'
+
+injectSpeedInsights()
+```
+
+This function call initializes the Speed Insights tracking and will automatically collect performance metrics once the project is deployed to Vercel.
+
+## Verification Steps Completed
+
+1. ✅ **Build Test**: Successfully built the project with `npm run build`
+   - No errors or warnings introduced
+   - All assets compiled correctly
+
+2. ✅ **Linting**: Ran `npm run lint` on the modified file
+   - No new linting errors introduced
+   - The main.jsx file passes all linting checks
+
+3. ✅ **Package Manager**: Updated lock files
+   - package-lock.json updated with new dependencies
+
+## Next Steps (for deployment)
+
+After merging this PR and deploying to Vercel:
+1. Enable Speed Insights in your Vercel dashboard (if not already enabled)
+2. The Speed Insights script will automatically inject on the deployed site
+3. Performance metrics will appear in the Vercel dashboard's Speed Insights section
+
+## Framework Details
+- **Framework**: Vite (v7.3.5)
+- **React**: v19.1.0
+- **Package Manager**: npm
+- **Integration Type**: Vite/Other frameworks (using `injectSpeedInsights()`)
