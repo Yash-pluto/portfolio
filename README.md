@@ -14,7 +14,6 @@ Designed to cut through the noise, this site relies on a near-black (`#050505`) 
 
 Engineered to handle massive scale while maintaining near-perfect web vital audits.
 
-- **Total Sessions (30 Days):** 5.6M+
 - **Performance:** 99 / 100
 - **Accessibility:** 99 / 100
 - **Best Practices:** 100 / 100
