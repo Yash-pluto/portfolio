@@ -1,5 +1,6 @@
 import React, { useState, Suspense, lazy } from "react";
 import { AnimatePresence } from "framer-motion";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import PreLoader from "./components/PreLoader"; // Save the pre-loader code from above here
 import CustomCursor from "./components/CustomCursor";
 import Navbar from "./components/Navbar";
@@ -47,6 +48,7 @@ export default function App() {
           </Suspense>
         </>
       )}
+      <SpeedInsights />
     </div>
   );
 }
