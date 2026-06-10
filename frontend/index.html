@@ -2,32 +2,6 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <link rel="canonical" href="https://yash-pluto.vercel.app/" />
-    <!-- 🚀 ADDED: Preconnect to Google Fonts to fix render-blocking -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org/",
-        "@type": "Person",
-        "name": "Yash Vardhan",
-        "url": "https://yash-pluto.vercel.app/",
-        "image": "https://yash-pluto.vercel.app/images/portfolio.JPG",
-        "sameAs": [
-          "https://github.com/yash-pluto",
-          "https://linkedin.com/in/vardhan-yash3105"
-        ],
-        "jobTitle": "Full-Stack Engineer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Self-Employed"
-        },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Amity University, Ranchi"
-        }
-      }
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -44,24 +18,75 @@
     />
     <meta name="author" content="Yash Vardhan" />
 
+    <!-- Robots Meta Tags for Search Engines -->
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <!-- Preconnect to Google Fonts to optimize loading speeds -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Enhanced Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yash Vardhan",
+        "url": "https://yash-pluto.vercel.app/",
+        "image": "https://yash-pluto.vercel.app/images/og-banner.png",
+        "sameAs": [
+          "https://github.com/yash-pluto",
+          "https://linkedin.com/in/vardhan-yash3105"
+        ],
+        "jobTitle": "Full-Stack Engineer",
+        "knowsAbout": [
+          "TypeScript",
+          "React",
+          "Node.js",
+          "Next.js",
+          "Web Development",
+          "Scalable Systems"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Self-Employed"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Amity University, Ranchi"
+        }
+      }
+    </script>
+
     <!-- Theme Color for Mobile Browsers -->
     <meta name="theme-color" content="#050505" />
 
-    <!-- Open Graph / Facebook (For link previews on Discord/Facebook/LinkedIn) -->
+    <!-- Open Graph / Facebook / WhatsApp (Fixed Domain Paths) -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Yash Vardhan Portfolio" />
     <meta property="og:url" content="https://yash-pluto.vercel.app/" />
     <meta property="og:title" content="Yash Vardhan | Full-Stack Engineer" />
     <meta
       property="og:description"
       content="I build scalable, high-performance web systems. Shipped 6 production deployments and engineered platforms handling over 5.6M+ user sessions."
     />
-    <!-- Ensure you have a high-res image at public/images/og-image.jpg (1200x630px works best) -->
+    <!-- Uses %20 to safely handle the space in your 'og banner.png' file name -->
     <meta
       property="og:image"
-      content="https://yash-pluto.vercel.app/images/portfolio.JPG"
+      content="https://yash-pluto.vercel.app/images/og-banner.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://yash-pluto.vercel.app/images/og-banner.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Yash Vardhan - Full-Stack Engineer Portfolio Banner"
     />
 
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://yash-pluto.vercel.app/" />
     <meta
@@ -74,18 +99,40 @@
     />
     <meta
       property="twitter:image"
-      content="https://yash-pluto.vercel.app/images/portfolio.JPG"
+      content="https://yash-pluto.vercel.app/images/og-banner.png"
     />
 
-    <!-- Favicon -->
+    <!-- Optimized Favicon Mappings (Linked your new favicon-96x96.png) -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" sizes="48x48" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body
     class="bg-[#050505] text-white antialiased selection:bg-white selection:text-black"
   >
+    <!-- Fallback warning for browsers running with JavaScript disabled -->
+    <noscript>
+      <div
+        style="
+          background: #ff4d4d;
+          color: white;
+          padding: 15px;
+          text-align: center;
+          font-weight: bold;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 9999;
+        "
+      >
+        This portfolio requires JavaScript to render completely. Please enable
+        it in your browser settings.
+      </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
