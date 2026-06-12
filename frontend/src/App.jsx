@@ -50,6 +50,7 @@ export default function App() {
           </Suspense>
         </>
       )}
+      <SpeedInsights />
     </div>
   );
 }

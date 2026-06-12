@@ -1,56 +1,65 @@
-# Vercel Speed Insights Implementation
+# Vercel Speed Insights Configuration Update
 
 ## Summary
-Successfully installed and configured Vercel Speed Insights for this Vite + React portfolio project.
+Updated the Vercel Speed Insights implementation to follow the latest official documentation and React best practices. The package was already installed but was using an outdated implementation method.
 
-## Changes Made
+## What Was Changed
 
-### 1. Package Installation
-- **Added**: `@vercel/speed-insights` package (latest version)
-- **File**: `package.json` - Added new dependency
-- **File**: `package-lock.json` - Updated with new package and its dependencies
+### Modified Files:
 
-### 2. Code Integration
-- **Modified**: `src/main.jsx`
-  - Added import for `injectSpeedInsights` from `@vercel/speed-insights`
-  - Called `injectSpeedInsights()` before React app initialization
-  - This follows the official Vercel documentation for Vite/Other frameworks
+1. **frontend/src/main.jsx**
+   - Removed the outdated `injectSpeedInsights()` function call
+   - Removed the import for `injectSpeedInsights` from `@vercel/speed-insights`
+   - Cleaned up the main entry point to focus solely on rendering the React app
+
+2. **frontend/src/App.jsx**
+   - Added import for `SpeedInsights` component from `@vercel/speed-insights/react`
+   - Added `<SpeedInsights />` component at the root level of the App component (outside the loading conditional)
 
 ## Implementation Details
 
-According to the latest Vercel Speed Insights documentation (fetched from https://vercel.com/docs/speed-insights/quickstart), for Vite projects, the recommended approach is to use `injectSpeedInsights()` in the main entry point.
-
-The implementation:
+### Previous Implementation (Outdated):
 ```javascript
+// main.jsx
 import { injectSpeedInsights } from '@vercel/speed-insights'
-
 injectSpeedInsights()
 ```
 
-This function call initializes the Speed Insights tracking and will automatically collect performance metrics once the project is deployed to Vercel.
+### New Implementation (Current Best Practice):
+```javascript
+// App.jsx
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
-## Verification Steps Completed
+export default function App() {
+  return (
+    <div>
+      {/* App content */}
+      <SpeedInsights />
+    </div>
+  );
+}
+```
 
-1. ✅ **Build Test**: Successfully built the project with `npm run build`
-   - No errors or warnings introduced
-   - All assets compiled correctly
+## Why This Approach?
 
-2. ✅ **Linting**: Ran `npm run lint` on the modified file
-   - No new linting errors introduced
-   - The main.jsx file passes all linting checks
+According to the official Vercel Speed Insights documentation (fetched from https://vercel.com/docs/speed-insights/quickstart):
 
-3. ✅ **Package Manager**: Updated lock files
-   - package-lock.json updated with new dependencies
+1. **React Component Approach**: For React applications, the recommended method is to use the `<SpeedInsights />` component from `@vercel/speed-insights/react`
+2. **Better Integration**: The component approach provides better integration with React's lifecycle and rendering
+3. **Modern Best Practice**: This aligns with React's component-based architecture and is the current recommended approach by Vercel
+4. **Placement**: The component is placed at the root level of the App component to ensure it tracks all page interactions, regardless of the loading state
 
-## Next Steps (for deployment)
+## Testing & Verification
 
-After merging this PR and deploying to Vercel:
-1. Enable Speed Insights in your Vercel dashboard (if not already enabled)
-2. The Speed Insights script will automatically inject on the deployed site
-3. Performance metrics will appear in the Vercel dashboard's Speed Insights section
+✅ Build completed successfully with `npm run build`
+✅ No new linting errors introduced (verified with `npx eslint src/main.jsx src/App.jsx`)
+✅ Dependencies installed and lockfile updated with `npm install`
+✅ Framework detected as Vite + React (correctly used `/react` export path)
 
-## Framework Details
-- **Framework**: Vite (v7.3.5)
-- **React**: v19.1.0
-- **Package Manager**: npm
-- **Integration Type**: Vite/Other frameworks (using `injectSpeedInsights()`)
+## Additional Notes
+
+- The `@vercel/speed-insights` package (v2.0.0) was already present in package.json
+- No new dependencies were added
+- The implementation now follows the exact pattern specified in Vercel's official quickstart documentation
+- The SpeedInsights component is placed outside the loading conditional to ensure it's always rendered once the app mounts
+- This change maintains backward compatibility while using the more modern and recommended API

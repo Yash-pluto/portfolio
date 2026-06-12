@@ -8,7 +8,7 @@ const projects = [
     role: "Full-Stack Migration",
     metrics: "5.6M+ Sessions",
     tech: "Next.js / TypeScript / GSAP",
-    link: "https://flantic.gg",
+    link: "https://flantic.app",
   },
   {
     id: "02",
