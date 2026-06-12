@@ -5,18 +5,23 @@ export default defineConfig({
   plugins: [react()],
   build: {
     target: "esnext",
-    // 🚀 Chunk Splitting: Separates heavy libraries from your main code
+    // 🚀 Dynamic Chunk Splitting: Safely separates all third-party libraries
     rollupOptions: {
       output: {
-        manualChunks: {
-          "vendor-react": ["react", "react-dom"],
-          "vendor-framer": ["framer-motion"],
-          "vendor-github": ["react-github-calendar"],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            // This safely names the chunk after the package itself
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
+          }
         },
       },
     },
   },
-  // 🚀 Security/Cleanliness: Strips all console.logs from the production build
+  // Strips all console.logs from the production build
   esbuild: {
     drop: ["console", "debugger"],
   },
