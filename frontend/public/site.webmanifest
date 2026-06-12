@@ -1,6 +1,11 @@
 {
+  "id": "yash-pluto-portfolio",
   "name": "Yash Vardhan | Full-Stack Engineer",
   "short_name": "Yash Vardhan",
+  "description": "Portfolio of a Full-Stack Engineer specializing in React, Next.js, and highly scalable web systems.",
+  "categories": ["portfolio", "developer", "engineering"],
+  "lang": "en",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -18,5 +23,7 @@
   "theme_color": "#050505",
   "background_color": "#050505",
   "display": "standalone",
-  "start_url": "/"
+  "display_override": ["window-controls-overlay", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "start_url": "/?source=pwa"
 }
