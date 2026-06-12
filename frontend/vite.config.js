@@ -1,7 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-})
+  build: {
+    target: "esnext",
+    // 🚀 Chunk Splitting: Separates heavy libraries from your main code
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react": ["react", "react-dom"],
+          "vendor-framer": ["framer-motion"],
+          "vendor-github": ["react-github-calendar"],
+        },
+      },
+    },
+  },
+  // 🚀 Security/Cleanliness: Strips all console.logs from the production build
+  esbuild: {
+    drop: ["console", "debugger"],
+  },
+});
