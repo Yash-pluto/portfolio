@@ -1,4 +1,25 @@
+# Allow all major search engines
 User-agent: *
 Allow: /
 
+# Explicitly block system/hidden directories (Security Best Practice)
+Disallow: /.git/
+Disallow: /.vercel/
+Disallow: /api/
+Disallow: /*.env$
+Disallow: /*.pdf$
+
+# Block aggressive SEO scrapers that waste your server bandwidth
+User-agent: AhrefsBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
+Disallow: /
+User-agent: Rogerbot
+Disallow: /
+
+# Point to your supercharged sitemap
 Sitemap: https://yash-pluto.vercel.app/sitemap.xml

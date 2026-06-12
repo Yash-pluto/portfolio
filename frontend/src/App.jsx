@@ -1,15 +1,15 @@
 import React, { useState, Suspense, lazy } from "react";
 import { AnimatePresence } from "framer-motion";
-import { SpeedInsights } from "@vercel/speed-insights/react";
-import PreLoader from "./components/PreLoader"; // Save the pre-loader code from above here
+import PreLoader from "./components/PreLoader";
 import CustomCursor from "./components/CustomCursor";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 
-// 🚀 ADDED: Lazy load components that are below the fold to fix "Unused JavaScript"
+// Lazy load components
 const About = lazy(() => import("./components/About"));
 const Experience = lazy(() => import("./components/Experience"));
 const Stacks = lazy(() => import("./components/Stacks"));
+const GithubGraph = lazy(() => import("./components/GithubGraph")); // 🚀 Added this!
 const Projects = lazy(() => import("./components/Projects"));
 const Contact = lazy(() => import("./components/Contact"));
 const Footer = lazy(() => import("./components/Footer"));
@@ -32,13 +32,15 @@ export default function App() {
           <Navbar />
           <main>
             <Hero />
-            {/* 🚀 ADDED: Suspense wrapper to render the lazy-loaded chunks smoothly */}
             <Suspense
               fallback={<div className='min-h-screen bg-[#050505]'></div>}
             >
               <About />
               <Experience />
               <Stacks />
+
+              <GithubGraph />
+
               <Projects />
               <Contact />
             </Suspense>
