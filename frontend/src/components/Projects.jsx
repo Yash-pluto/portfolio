@@ -12,11 +12,11 @@ const projects = [
   },
   {
     id: "02",
-    title: "Shadowlinks",
-    role: "Link Management API",
+    title: "Orbit",
+    role: "LinkTree Alternative",
     metrics: "<1% API Error Rate",
-    tech: "React / Node.js / MongoDB",
-    link: "https://shadowlinks.vercel.app",
+    tech: "Next.js / TypeScript / MongoDB",
+    link: "https://orbit-pluto.vercel.app",
   },
   {
     id: "03",
