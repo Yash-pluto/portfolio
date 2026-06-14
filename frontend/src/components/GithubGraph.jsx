@@ -35,7 +35,7 @@ export default function GithubGraph() {
   return (
     <section
       id='github-activity'
-      className='py-24 bg-black px-6 md:px-12 lg:px-24 flex justify-center'
+      className='py-24 bg-[#050505] px-6 md:px-12 lg:px-24 flex justify-center'
     >
       <div className='max-w-7xl w-full flex flex-col'>
         <motion.div
