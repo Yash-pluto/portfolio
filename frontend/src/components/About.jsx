@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section
       id='about'
-      className='py-32 bg-[#0a0a0a] border-t border-white/[0.02] px-6 md:px-12 lg:px-24'
+      className='py-32 bg-[#050505] border-t border-white/[0.05] px-6 md:px-12 lg:px-24'
     >
       <div className='max-w-7xl mx-auto'>
         <motion.div
