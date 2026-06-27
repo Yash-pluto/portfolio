@@ -92,7 +92,7 @@ export default function LiveStatus() {
             id: "spotify",
             label: "AUDIO",
             title: data.spotify.song,
-            subtitle: data.spotify.artist.split(";"),
+            subtitle: data.spotify.artist.split(";").join(", "),
             image: data.spotify.album_art_url,
             isLive: true,
             type: "spotify",
@@ -122,6 +122,10 @@ export default function LiveStatus() {
                   processImage = `https://cdn.discordapp.com/app-assets/${processActivity.application_id}/${imgId}.png`;
                 }
               }
+            }
+
+            if (!processImage && processActivity.application_id) {
+              processImage = `https://dcdn.dstn.to/app-icons/${processActivity.application_id}`;
             }
 
             const processSubtitle =
@@ -239,7 +243,6 @@ export default function LiveStatus() {
 
         {/* Text Readout */}
         <div className='flex flex-col min-w-0 flex-1 overflow-hidden'>
-          {/* 🚀 FIXED: Guaranteed to use <p> tag to prevent a broken <h4> heading hierarchy */}
           {activities.length === 1 && (
             <p className='text-[8px] font-bold tracking-[0.2em] uppercase text-neutral-600 mb-0.5 truncate'>
               {active.label}
