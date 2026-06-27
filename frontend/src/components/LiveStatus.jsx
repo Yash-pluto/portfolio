@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import animePic from "../assets/anime.png";
 
 // --- Timer Helper Components ---
 
@@ -154,10 +155,10 @@ export default function LiveStatus() {
             label: "SYSTEM",
             title:
               data.discord_status === "offline"
-                ? "SYSTEM STANDBY"
-                : "UPLINK ACTIVE",
+                ? "USER OFFLINE"
+                : "WATCHING ANIME",
             subtitle: data.discord_status === "offline" ? "Offline" : "Online",
-            image: null,
+            image: data.discord_status === "offline" ? null : animePic,
             isLive: data.discord_status !== "offline",
             type: "system",
           });
