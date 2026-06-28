@@ -37,9 +37,9 @@ export default function Experience() {
   return (
     <section
       id='experience'
-      className='py-32 bg-[#050505] relative px-6 md:px-12 lg:px-24'
+      className='py-32 bg-[#050505] px-6 md:px-12 lg:px-24 select-none'
     >
-      <div className='max-w-4xl mx-auto'>
+      <div className='max-w-7xl mx-auto'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,13 +47,13 @@ export default function Experience() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className='mb-20'
         >
-          <h2 className='text-3xl md:text-5xl font-bold tracking-tight text-white mb-4'>
+          <h2 className='text-5xl font-bold tracking-tight text-white mb-4 uppercase font-mono tracking-[0.2em] text-neutral-500'>
             Experience
           </h2>
-          <div className='w-12 h-1 bg-white'></div>
+          <div className='w-8 h-[1px] bg-white/30'></div>
         </motion.div>
 
-        <div className='space-y-16'>
+        <div className='flex flex-col border-t border-white/10'>
           {experienceData.map((job, index) => (
             <motion.div
               key={index}
@@ -62,44 +62,40 @@ export default function Experience() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{
                 duration: 0.8,
-                delay: index * 0.1,
+                delay: index * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className='relative pl-8 md:pl-0'
+              className='flex flex-col lg:flex-row py-14 border-b border-white/10 group'
             >
-              <div className='md:grid md:grid-cols-12 gap-8 items-baseline'>
-                {/* Timeline Marker (Mobile only) */}
-                <div className='md:hidden absolute left-0 top-2 w-[1px] h-full bg-white/10'>
-                  <div className='absolute top-0 -left-[3px] w-1.5 h-1.5 rounded-full bg-white'></div>
-                </div>
+              {/* Left Column: Dates & Company */}
+              <div className='lg:w-1/3 mb-6 lg:mb-0 pr-8'>
+                <p className='text-[10px] font-mono tracking-[0.2em] uppercase text-neutral-500 mb-3 group-hover:text-purple-400 transition-colors duration-500'>
+                  {job.date}
+                </p>
+                <h3 className='text-xl md:text-2xl font-bold text-white tracking-tighter'>
+                  {job.company}
+                </h3>
+              </div>
 
-                {/* Left Column: Dates & Company */}
-                <div className='md:col-span-4 mb-4 md:mb-0'>
-                  <p className='text-xs font-semibold tracking-widest uppercase text-neutral-500 mb-2'>
-                    {job.date}
-                  </p>
-                  <h3 className='text-xl font-medium text-white'>
-                    {job.company}
-                  </h3>
-                </div>
-
-                {/* Right Column: Role & Achievements */}
-                <div className='md:col-span-8'>
-                  <h4 className='text-lg font-medium text-neutral-300 mb-6 flex items-center gap-3'>
-                    {job.role}
-                  </h4>
-                  <ul className='space-y-4'>
-                    {job.achievements.map((item, i) => (
-                      <li
-                        key={i}
-                        className='text-sm md:text-base text-neutral-400 leading-relaxed flex items-start'
-                      >
-                        <span className='mr-4 mt-2.5 w-1 h-1 rounded-full bg-neutral-600 shrink-0'></span>
+              {/* Right Column: Role & Achievements */}
+              <div className='lg:w-2/3'>
+                <h4 className='text-lg font-medium text-neutral-300 mb-6 font-mono text-sm'>
+                  {job.role}
+                </h4>
+                <ul className='space-y-4'>
+                  {job.achievements.map((item, i) => (
+                    <li
+                      key={i}
+                      className='text-sm md:text-base text-neutral-400 leading-relaxed flex items-start group/item'
+                    >
+                      {/* FIX 4: Upgraded bullet points with interactive hover states */}
+                      <span className='mr-4 mt-2.5 w-1.5 h-1.5 rounded-full bg-neutral-700 shrink-0 group-hover/item:bg-purple-500 transition-colors duration-300 shadow-[0_0_6px] shadow-transparent group-hover/item:shadow-purple-500/50'></span>
+                      <span className='group-hover/item:text-neutral-300 transition-colors duration-300'>
                         {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}

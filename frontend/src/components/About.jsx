@@ -15,10 +15,10 @@ export default function About() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className='mb-20'
         >
-          <h2 className='text-3xl md:text-5xl font-bold tracking-tight text-white mb-4'>
+          <h2 className='text-5xl font-bold tracking-tight text-white mb-4 uppercase font-mono tracking-[0.2em] text-neutral-500'>
             Background
           </h2>
-          <div className='w-12 h-1 bg-white'></div>
+          <div className='w-8 h-[1px] bg-white/30'></div>
         </motion.div>
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24'>
@@ -32,23 +32,23 @@ export default function About() {
           >
             <div className='space-y-6 text-neutral-400 text-base md:text-lg font-light leading-relaxed'>
               <p>
-                I am a full-stack engineer driven by a singular focus: building
-                web systems that are as incredibly fast as they are structurally
-                sound. Whether I am optimizing React render cycles,
-                orchestrating Socket.IO connections, or designing modular REST
-                APIs, my approach remains the same, ruthless efficiency and
-                clean architecture.
+                I'm a full-stack engineer focused on building web systems that
+                are fast and reliable. Whether I'm optimizing React render
+                cycles, managing Socket.IO connections, or structuring REST
+                APIs, I care about writing clean, functional code without the
+                over-engineering.
               </p>
               <p>
-                Beyond the IDE, my current technical focus spans into the data
-                science realm, exploring Python, Pandas, and Scikit-Learn to
-                build predictive models and recommendation engines.
+                When I step away from the IDE, my audio is usually locked into
+                Juice WRLD, Lil Peep, or Kim Petras. I split my screen time
+                between grinding Valorant and COD, getting humbled by Sekiro and
+                Dark Souls, or just decompressing in Minecraft.
               </p>
               <p>
-                When I finally disconnect from the editor or step away from
-                grinding competitive VALORANT, you will likely find me out
-                photographing the wooded hills and rocky terrains around my
-                city, or just hanging out with my dog, Chip.
+                Offline, I swap the monitors for a camera to photograph the
+                trees and mountain landscapes around Ranchi. And if I'm just
+                kicking back, I'm probably catching up on romcoms like{" "}
+                <em>Bunny Girl Senpai</em>.
               </p>
             </div>
           </motion.div>
