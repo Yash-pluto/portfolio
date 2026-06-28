@@ -7,7 +7,6 @@ export default function GithubGraph() {
   const dragRef = useRef({ isDown: false, startX: 0, scrollLeft: 0 });
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
-  // Cleaned up your purple theme to blend beautifully with the deep black background
   const customTheme = {
     dark: ["#111111", "#4c2889", "#6b33cc", "#8b5cf6", "#a78bfa"],
   };
@@ -45,16 +44,18 @@ export default function GithubGraph() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className='mb-12 flex flex-col items-start'
         >
-          <h2 className='text-3xl md:text-5xl font-bold text-white mb-3'>
+          <h2 className='text-5xl font-bold tracking-tight text-white mb-4 uppercase font-mono tracking-[0.2em] text-neutral-500'>
             Consistency
           </h2>
-          <div className='w-12 h-[3px] bg-white mb-8'></div>
+          <div className='w-8 h-[1px] bg-white/30'></div>
 
-          <div className='relative z-50 inline-block'>
+          <div
+            className='relative inline-block pt-10'
+            onMouseEnter={() => setIsTooltipVisible(true)}
+            onMouseLeave={() => setIsTooltipVisible(false)}
+          >
             <button
               onClick={() => setIsTooltipVisible(!isTooltipVisible)}
-              onMouseEnter={() => setIsTooltipVisible(true)}
-              onMouseLeave={() => setIsTooltipVisible(false)}
               className='group flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.02] border border-white/10 hover:bg-white/[0.05] transition-colors duration-200'
             >
               <div className='w-4 h-4 flex items-center justify-center'>

@@ -15,7 +15,7 @@ export default function Contact() {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h2 className='text-[clamp(3.5rem,8vw,7rem)] font-bold tracking-tighter text-white leading-[0.9] mb-8'>
+          <h2 className='text-5xl font-bold tracking-tight text-white mb-4 uppercase font-mono tracking-[0.2em] text-neutral-500'>
             Let's build <br />
             <span className='text-neutral-600'>something scalable.</span>
           </h2>

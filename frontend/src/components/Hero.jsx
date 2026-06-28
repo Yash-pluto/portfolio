@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  useScroll,
+} from "framer-motion";
 
 // Helper component to handle the dynamic counting
 const AnimatedCounter = ({
@@ -19,8 +25,8 @@ const AnimatedCounter = ({
   useEffect(() => {
     const controls = animate(count, to, {
       duration: duration,
-      ease: [0.16, 1, 0.3, 1], // Matches your existing easing curve
-      delay: 0.5, // Waits for the parent container to fade in
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.5,
     });
 
     return () => controls.stop();
@@ -30,30 +36,45 @@ const AnimatedCounter = ({
 };
 
 export default function Hero() {
+  // --- Parallax Setup ---
+  const { scrollY } = useScroll();
+
+  // Background moves down slowly
+  const yBg = useTransform(scrollY, [0, 1000], [0, 300]);
+  // Left column moves down and fades out
+  const yLeft = useTransform(scrollY, [0, 800], [0, 150]);
+  const opacityLeft = useTransform(scrollY, [0, 600], [1, 0]);
+  // Right column moves up for contrast
+  const yRight = useTransform(scrollY, [0, 800], [0, -100]);
+
   return (
     <section
       id='home'
-      className='relative min-h-screen flex items-center bg-[#050505] px-6 md:px-12 lg:px-24 overflow-hidden'
+      className='relative min-h-screen flex items-center bg-[#050505] px-6 md:px-12 lg:px-24 overflow-hidden select-none'
     >
-      {/* Subtle Noise Texture instead of the generic grid */}
-      <div
+      {/* Animated Parallax Noise Texture */}
+      <motion.div
         className='absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay'
         style={{
+          y: yBg,
           backgroundImage:
             'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")',
         }}
-      ></div>
+      ></motion.div>
 
       <div className='relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center pt-20'>
         {/* Left Column: Bold, Asymmetrical Typography */}
-        <div className='lg:col-span-8'>
+        <motion.div
+          style={{ y: yLeft, opacity: opacityLeft }}
+          className='lg:col-span-8'
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
             <h1 className='text-[clamp(3.5rem,8vw,7.5rem)] font-bold text-white leading-[0.85] tracking-tighter mb-8'>
-              Engineer.
+              Build.
               <br />
               <span className='text-neutral-600'>Optimize.</span>
               <br />
@@ -67,8 +88,9 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.3 }}
             className='text-lg md:text-xl text-neutral-400 font-light max-w-xl leading-relaxed mb-12'
           >
-            Full-stack engineer specializing in TypeScript, React, and Node.js.
-            I don't just write code; I deliver measurable performance at scale.
+            Full-stack engineer building fast, reliable web systems. I write
+            clean code, optimize performance, and keep things structurally
+            sound.
           </motion.p>
 
           <motion.div
@@ -97,10 +119,11 @@ export default function Hero() {
               </svg>
             </a>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Right Column: Hard Data & Metrics */}
         <motion.div
+          style={{ y: yRight }}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}

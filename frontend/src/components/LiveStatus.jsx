@@ -4,7 +4,6 @@ import animePic from "../assets/anime.png";
 
 // --- Timer Helper Components ---
 
-// For VS Code / Games (Shows HH:MM:SS elapsed)
 const ElapsedTimer = ({ start }) => {
   const [now, setNow] = useState(Date.now());
 
@@ -33,7 +32,6 @@ const ElapsedTimer = ({ start }) => {
   );
 };
 
-// For Spotify (Shows MM:SS / MM:SS and a mini progress bar)
 const SpotifyTimer = ({ start, end }) => {
   const [now, setNow] = useState(Date.now());
 
@@ -87,7 +85,7 @@ export default function LiveStatus() {
 
         let newActivities = [];
 
-        // 1. Check for Spotify
+        // 1. Spotify
         if (data.listening_to_spotify && data.spotify) {
           newActivities.push({
             id: "spotify",
@@ -101,7 +99,7 @@ export default function LiveStatus() {
           });
         }
 
-        // 2. Check for Process / VS Code / Games
+        // 2. Process / VS Code / Games
         if (data.activities && data.activities.length > 0) {
           const processActivity = data.activities.find((a) => a.type === 0);
 
@@ -115,12 +113,13 @@ export default function LiveStatus() {
 
               if (imgId) {
                 if (imgId.startsWith("mp:external/")) {
-                  processImage = imgId.replace(
-                    "mp:",
-                    "https://media.discordapp.net/",
-                  );
+                  // FIX: Appended dimension parameter to resolve image crispness issues
+                  processImage =
+                    imgId.replace("mp:", "https://media.discordapp.net/") +
+                    "?width=128&height=128";
                 } else {
-                  processImage = `https://cdn.discordapp.com/app-assets/${processActivity.application_id}/${imgId}.png`;
+                  // FIX: Forced high-res 128px version of the asset from Discord CDN
+                  processImage = `https://cdn.discordapp.com/app-assets/${processActivity.application_id}/${imgId}.png?size=128`;
                 }
               }
             }
@@ -148,11 +147,11 @@ export default function LiveStatus() {
           }
         }
 
-        // 3. Fallback if nothing is running
+        // 3. Fallback
         if (newActivities.length === 0) {
           newActivities.push({
-            id: "system",
-            label: "SYSTEM",
+            id: "process",
+            label: "PROCESS",
             title:
               data.discord_status === "offline"
                 ? "USER OFFLINE"
@@ -160,7 +159,7 @@ export default function LiveStatus() {
             subtitle: data.discord_status === "offline" ? "Offline" : "Online",
             image: data.discord_status === "offline" ? null : animePic,
             isLive: data.discord_status !== "offline",
-            type: "system",
+            type: "process",
           });
         }
 
@@ -193,7 +192,7 @@ export default function LiveStatus() {
 
   if (isConnecting || activities.length === 0) {
     return (
-      <div className='flex items-center gap-3'>
+      <div className='flex items-center gap-3 h-[52px]'>
         <div className='w-2 h-2 bg-neutral-700 rounded-full animate-pulse'></div>
         <span className='text-[10px] font-mono text-neutral-500'>
           AWAITING UPLINK...
@@ -225,15 +224,15 @@ export default function LiveStatus() {
         </div>
       )}
 
-      {/* Content Area */}
-      <div className='flex items-start gap-3 min-h-[2.5rem]'>
+      {/* FIX: Set a strict minimum/standard height to anchor the container sizing layout */}
+      <div className='flex items-start gap-3 min-h-[52px]'>
         {/* Visual Indicator */}
         <div className='relative flex items-center justify-center w-8 h-8 flex-shrink-0 mt-0.5'>
           {active.image ? (
             <img
               src={active.image}
               alt='Activity Art'
-              className='w-full h-full object-cover rounded-sm border border-white/10'
+              className='w-full h-full object-cover rounded-sm border border-white/10 image-render-pixelated'
             />
           ) : active.isLive ? (
             <span className='relative inline-flex rounded-full h-2 w-2 bg-purple-500 shadow-[0_0_8px] shadow-purple-500/50'></span>
@@ -253,20 +252,20 @@ export default function LiveStatus() {
           <AnimatePresence mode='wait'>
             <motion.div
               key={active.id}
-              initial={{ opacity: 0, y: 5 }}
+              initial={{ opacity: 0, y: 3 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              transition={{ duration: 0.2 }}
+              exit={{ opacity: 0, y: -3 }}
+              transition={{ duration: 0.15 }}
               className='flex flex-col min-w-0'
             >
               <span
-                className='text-[10px] font-mono text-white truncate'
+                className='text-[10px] font-mono text-white truncate leading-none mb-1'
                 title={active.title}
               >
                 {active.title}
               </span>
               <span
-                className='text-[8px] font-mono text-neutral-500 truncate'
+                className='text-[8px] font-mono text-neutral-500 truncate leading-none'
                 title={active.subtitle}
               >
                 {active.subtitle}
